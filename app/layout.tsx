@@ -14,8 +14,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "lash & brow | Ламинирование ресниц и бровей в Новосибирске",
-  description: "Сертифицированный мастер Нигора. Выезд на дом.",
+  title: "NurBeauty — Ламинирование ресниц и бровей в Новосибирске",
+  description: "NurBeauty — сертифицированный мастер Нигора. Ламинирование ресниц и бровей с выездом на дом в Новосибирске.",
+  keywords: ["NurBeauty", "ламинирование ресниц", "ламинирование бровей", "Новосибирск", "выезд на дом"],
+  openGraph: {
+    title: "NurBeauty — Ламинирование ресниц и бровей в Новосибирске",
+    description: "Сертифицированный мастер с выездом на дом. Запись онлайн.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

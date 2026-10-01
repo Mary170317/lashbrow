@@ -1,5 +1,5 @@
-﻿export const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "PASTE_YOUR_BOT_TOKEN";
-export const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "PASTE_YOUR_CHAT_ID";
+export const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
+export const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "";
 
 export interface BookingData {
   name: string;
@@ -12,18 +12,18 @@ export interface BookingData {
 
 export async function sendBookingToTelegram(data: BookingData): Promise<boolean> {
   try {
-    const message = `
-🌸 *НОВАЯ ЗАЯВКА* 🌸
-
-👤 *Имя:* ${data.name}
-📱 *Телефон:* ${data.phone}
-💅 *Услуга:* ${data.service}
-📅 *Дата и время:* ${data.date}
-📍 *Адрес:* ${data.address}
-💬 *Комментарий:* ${data.comment || "Нет"}
-
-⏰ *Время заявки:* ${new Date().toLocaleString("ru-RU")}
-    `;
+    const message = [
+      "🌸 *NurBeauty — НОВАЯ ЗАЯВКА* 🌸",
+      "",
+      `👤 *Имя:* ${data.name}`,
+      `📱 *Телефон:* ${data.phone}`,
+      `💅 *Услуга:* ${data.service}`,
+      `📅 *Дата и время:* ${data.date}`,
+      `📍 *Адрес:* ${data.address}`,
+      `💬 *Комментарий:* ${data.comment || "Нет"}`,
+      "",
+      `⏰ *Время заявки:* ${new Date().toLocaleString("ru-RU")}`,
+    ].join("\n");
 
     const response = await fetch(
       `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,

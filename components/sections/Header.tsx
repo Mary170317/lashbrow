@@ -39,74 +39,34 @@ export function Header() {
       }}
     >
       <div className="container-page">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: 60,
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
           <a
             href="#"
             style={{
-              fontSize: 12.5,
-              fontWeight: 500,
+              fontFamily: "var(--font-playfair), serif",
+              fontSize: 18,
+              fontWeight: 700,
               color: "#1a1a1a",
               textDecoration: "none",
               whiteSpace: "nowrap",
             }}
           >
-            Ламинирование ресниц и бровей
+            NurBeauty
           </a>
 
-          <nav
-            style={{
-              display: "flex",
-              gap: 26,
-              alignItems: "center",
-            }}
-            className="desktop-nav"
-          >
+          <nav style={{ display: "flex", gap: 26, alignItems: "center" }} className="desktop-nav">
             {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                style={{
-                  fontSize: 12.5,
-                  color: "#1a1a1a",
-                  textDecoration: "none",
-                }}
-              >
+              <a key={l.href} href={l.href} style={{ fontSize: 12.5, color: "#1a1a1a", textDecoration: "none" }}>
                 {l.label}
               </a>
             ))}
           </nav>
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-            }}
-            className="desktop-nav"
-          >
-            <a
-              href="tel:+79232231515"
-              style={{
-                fontSize: 12.5,
-                color: "#1a1a1a",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-              }}
-            >
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }} className="desktop-nav">
+            <a href="tel:+79232231515" style={{ fontSize: 12.5, color: "#1a1a1a", textDecoration: "none", whiteSpace: "nowrap" }}>
               8 923 223 15 15
             </a>
-            <button
-              className="btn-pink"
-              onClick={() => scrollTo("booking")}
-              style={{ padding: "7px 18px", fontSize: 12 }}
-            >
+            <button className="btn-pink" onClick={() => scrollTo("booking")} style={{ padding: "7px 18px", fontSize: 12 }}>
               Записаться
             </button>
           </div>
@@ -114,54 +74,20 @@ export function Header() {
           <button
             className="mobile-btn"
             onClick={() => setOpen(!open)}
-            style={{
-              background: "none",
-              border: "none",
-              fontSize: 22,
-              cursor: "pointer",
-              color: "#1a1a1a",
-              display: "none",
-            }}
+            style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", color: "#1a1a1a", display: "none" }}
           >
             {open ? "✕" : "☰"}
           </button>
         </div>
 
         {open && (
-          <div
-            style={{
-              paddingTop: 12,
-              paddingBottom: 16,
-              borderTop: "1px solid rgba(0,0,0,0.1)",
-              display: "flex",
-              flexDirection: "column",
-              gap: 10,
-            }}
-          >
+          <div style={{ paddingTop: 12, paddingBottom: 16, borderTop: "1px solid rgba(0,0,0,0.1)", display: "flex", flexDirection: "column", gap: 10 }}>
             {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                style={{
-                  fontSize: 13,
-                  color: "#1a1a1a",
-                  textDecoration: "none",
-                }}
-              >
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ fontSize: 13, color: "#1a1a1a", textDecoration: "none" }}>
                 {l.label}
               </a>
             ))}
-            <a
-              href="tel:+79232231515"
-              style={{
-                fontSize: 13,
-                color: "#1a1a1a",
-                paddingTop: 10,
-                borderTop: "1px solid rgba(0,0,0,0.1)",
-                textDecoration: "none",
-              }}
-            >
+            <a href="tel:+79232231515" style={{ fontSize: 13, color: "#1a1a1a", paddingTop: 10, borderTop: "1px solid rgba(0,0,0,0.1)", textDecoration: "none" }}>
               8 923 223 15 15
             </a>
           </div>
