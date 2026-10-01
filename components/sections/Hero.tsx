@@ -3,12 +3,13 @@ import Image from "next/image";
 export function Hero() {
   return (
     <section
-      className="relative"
+      className="hero-section"
       style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        position: "relative",
+        width: "100%",
+        height: "60vh",
+        minHeight: 320,
+        maxHeight: 500,
         overflow: "hidden",
         background: "#000",
       }}
@@ -21,6 +22,14 @@ export function Hero() {
         style={{ objectFit: "cover", objectPosition: "center" }}
         sizes="100vw"
       />
+      <style>{`
+        @media (min-width: 768px) {
+          .hero-section {
+            height: 100vh !important;
+            max-height: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

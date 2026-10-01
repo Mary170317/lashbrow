@@ -2,7 +2,7 @@ import asyncio
 from aiogram import Bot
 
 BOT_TOKEN = "8507432135:AAHUWu63c5UUshNGSG5d4CmVKbKNLCcKtjs"
-ADMIN_ID = 7766881831
+ADMIN_ID = 8002327046
 
 async def main():
     bot = Bot(token=BOT_TOKEN)
