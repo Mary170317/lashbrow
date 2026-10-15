@@ -1,3 +1,6 @@
+import { AnimatedBg } from "@/components/ui/AnimatedBg";
+import { Reveal } from "@/components/ui/Reveal";
+
 const reviews = [
   {
     name: "Анна С.",
@@ -16,66 +19,28 @@ const reviews = [
 export function Reviews() {
   return (
     <section id="reviews" className="section" style={{ background: "#F5CED8" }}>
-      <div className="container-page">
-        <h2 className="section-title">ОТЗЫВЫ</h2>
-        <p className="section-subtitle">
-          Познакомьтесь с отзывами наших клиентов! Мы гордимся их доверием.
-          Благодарим вас за выбор нашего салона. Здесь вы найдёте искренние
-          отзывы о работе мастера Нигоры.
-        </p>
+      <AnimatedBg />
+      <div className="container-page" style={{ position: "relative", zIndex: 2 }}>
+        <Reveal>
+          <h2 className="section-title">ОТЗЫВЫ</h2>
+          <p className="section-subtitle">
+            Познакомьтесь с отзывами наших клиентов! Мы гордимся их доверием.
+          </p>
+        </Reveal>
 
-        <div
-          style={{
-            maxWidth: 800,
-            margin: "0 auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: 14,
-          }}
-        >
+        <div style={{ maxWidth: 800, margin: "24px auto 0", display: "flex", flexDirection: "column", gap: 14 }}>
           {reviews.map((r, i) => (
-            <div
-              key={i}
-              className="card"
-              style={{ padding: "16px 18px" }}
-            >
-              <p
-                style={{
-                  fontSize: 12.5,
-                  lineHeight: 1.6,
-                  color: "#333",
-                  marginBottom: 10,
-                }}
-              >
-                {r.text}
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 600,
-                    color: "#1a1a1a",
-                  }}
-                >
-                  {r.name}
-                </span>
-                <span
-                  style={{
-                    fontSize: 12,
-                    color: "#FF1493",
-                    letterSpacing: 2,
-                  }}
-                >
-                  ★★★★★
-                </span>
+            <Reveal key={i} delay={(i % 3) as 0 | 1 | 2}>
+              <div className="card" style={{ padding: "18px 22px" }}>
+                <p style={{ fontSize: 12.5, lineHeight: 1.6, color: "#333", marginBottom: 10 }}>
+                  {r.text}
+                </p>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: "#1a1a1a" }}>{r.name}</span>
+                  <span style={{ fontSize: 12, color: "#FF1493", letterSpacing: 2 }}>★★★★★</span>
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

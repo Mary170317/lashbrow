@@ -1,16 +1,19 @@
 "use client";
 import { useState } from "react";
+import { AnimatedBg } from "@/components/ui/AnimatedBg";
+import { Reveal } from "@/components/ui/Reveal";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
-  padding: "10px 14px",
-  borderRadius: 10,
+  padding: "12px 16px",
+  borderRadius: 14,
   background: "#fff",
-  border: "1px solid #fff",
+  border: "2px solid #fff",
   fontSize: 13,
   color: "#1a1a1a",
   outline: "none",
   fontFamily: "inherit",
+  transition: "all 0.3s",
 };
 
 const labelStyle: React.CSSProperties = {
@@ -26,12 +29,7 @@ export function BookingForm() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    service: "",
-    date: "",
-    address: "",
-    comment: "",
+    name: "", phone: "", service: "", date: "", address: "", comment: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,10 +44,7 @@ export function BookingForm() {
         body: JSON.stringify(form),
       });
       const data = await res.json();
-      if (!res.ok) {
-        setError(data.error || "Ошибка отправки");
-        return;
-      }
+      if (!res.ok) { setError(data.error || "Ошибка отправки"); return; }
       setSuccess(true);
       setForm({ name: "", phone: "", service: "", date: "", address: "", comment: "" });
     } catch {
@@ -61,66 +56,83 @@ export function BookingForm() {
 
   return (
     <section id="booking" className="section" style={{ background: "#F5CED8" }}>
-      <div className="container-page">
+      <AnimatedBg />
+      <div className="container-page" style={{ position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <h2 className="section-title">Заполните форму, чтобы записаться на процедуру</h2>
-          <p className="section-subtitle">
-            Укажите ваше имя, контактные данные, выберите услугу, укажите дату и время, адрес выезда и добавьте комментарий
-          </p>
+          <Reveal>
+            <h2 className="section-title">Заполните форму, чтобы записаться на процедуру</h2>
+            <p className="section-subtitle">
+              Укажите ваше имя, контактные данные, выберите услугу, укажите дату и время, адрес выезда и добавьте комментарий
+            </p>
+          </Reveal>
 
           {success && (
-            <div style={{ padding: 12, borderRadius: 10, background: "#d4f5d4", border: "1px solid #7dc87d", color: "#1a5c1a", fontSize: 13, marginBottom: 14 }}>
+            <div style={{ padding: 14, borderRadius: 16, background: "#d4f5d4", border: "2px solid #7dc87d", color: "#1a5c1a", fontSize: 13, marginBottom: 14 }}>
               ✅ Заявка отправлена! Мы свяжемся с вами.
             </div>
           )}
           {error && (
-            <div style={{ padding: 12, borderRadius: 10, background: "#ffd4d4", border: "1px solid #e08080", color: "#7a1a1a", fontSize: 13, marginBottom: 14 }}>
+            <div style={{ padding: 14, borderRadius: 16, background: "#ffd4d4", border: "2px solid #e08080", color: "#7a1a1a", fontSize: 13, marginBottom: 14 }}>
               ⚠️ {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div>
-              <label style={labelStyle}>Имя</label>
-              <input style={inputStyle} placeholder="Ваше имя" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
-            </div>
+            <Reveal delay={0}>
+              <div>
+                <label style={labelStyle}>Имя</label>
+                <input style={inputStyle} placeholder="Ваше имя" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+              </div>
+            </Reveal>
 
-            <div>
-              <label style={labelStyle}>Телефон</label>
-              <input type="tel" style={inputStyle} placeholder="Ваш номер телефона" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
-            </div>
+            <Reveal delay={0}>
+              <div>
+                <label style={labelStyle}>Телефон</label>
+                <input type="tel" style={inputStyle} placeholder="Ваш номер телефона" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
+              </div>
+            </Reveal>
 
-            <div>
-              <label style={labelStyle}>Услуга</label>
-              <select style={{ ...inputStyle, cursor: "pointer" }} value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} required>
-                <option value="">Выберите услугу</option>
-                <option value="Ламинирование ресниц (1600 рублей)">Ламинирование ресниц — 1600 рублей</option>
-                <option value="Ламинирование бровей (1500 рублей)">Ламинирование бровей — 1500 рублей</option>
-                <option value="Комплекс: ресницы и брови (2700 рублей)">Комплекс: ресницы и брови — 2700 рублей</option>
-                <option value="Снятие нарощенных ресниц отдельно (500 рублей)">Снятие нарощенных ресниц отдельно — 500 рублей</option>
-                <option value="Коррекция бровей (600 рублей)">Коррекция бровей — 600 рублей</option>
-                <option value="Окраска бровей (500 рублей)">Окраска бровей — 500 рублей</option>
-              </select>
-            </div>
+            <Reveal delay={0}>
+              <div>
+                <label style={labelStyle}>Услуга</label>
+                <select style={{ ...inputStyle, cursor: "pointer" }} value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} required>
+                  <option value="">Выберите услугу</option>
+                  <option value="Ламинирование ресниц (1600 рублей)">Ламинирование ресниц — 1600 ₽</option>
+                  <option value="Ламинирование бровей (1500 рублей)">Ламинирование бровей — 1500 ₽</option>
+                  <option value="Комплекс: ресницы и брови (2700 рублей)">Комплекс: ресницы и брови — 2700 ₽</option>
+                  <option value="Снятие нарощенных ресниц отдельно (500 рублей)">Снятие нарощенных ресниц отдельно — 500 ₽</option>
+                  <option value="Коррекция бровей (600 рублей)">Коррекция бровей — 600 ₽</option>
+                  <option value="Окраска бровей (500 рублей)">Окраска бровей — 500 ₽</option>
+                </select>
+              </div>
+            </Reveal>
 
-            <div>
-              <label style={labelStyle}>Дата и время</label>
-              <input style={inputStyle} placeholder="Выберите дату и время процедуры" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} required />
-            </div>
+            <Reveal delay={0}>
+              <div>
+                <label style={labelStyle}>Дата и время</label>
+                <input style={inputStyle} placeholder="Выберите дату и время процедуры" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} required />
+              </div>
+            </Reveal>
 
-            <div>
-              <label style={labelStyle}>Адрес</label>
-              <input style={inputStyle} placeholder="Ваш адрес" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} required />
-            </div>
+            <Reveal delay={0}>
+              <div>
+                <label style={labelStyle}>Адрес</label>
+                <input style={inputStyle} placeholder="Ваш адрес" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} required />
+              </div>
+            </Reveal>
 
-            <div>
-              <label style={labelStyle}>Комментарии</label>
-              <textarea style={{ ...inputStyle, minHeight: 90, resize: "vertical" }} value={form.comment} onChange={(e) => setForm({ ...form, comment: e.target.value })} />
-            </div>
+            <Reveal delay={0}>
+              <div>
+                <label style={labelStyle}>Комментарии</label>
+                <textarea style={{ ...inputStyle, minHeight: 90, resize: "vertical" }} value={form.comment} onChange={(e) => setForm({ ...form, comment: e.target.value })} />
+              </div>
+            </Reveal>
 
-            <button type="submit" className="btn-pink" disabled={loading} style={{ width: "100%", opacity: loading ? 0.6 : 1 }}>
-              {loading ? "Отправка..." : "Записаться"}
-            </button>
+            <Reveal delay={0}>
+              <button type="submit" className="btn-pink" disabled={loading} style={{ width: "100%", opacity: loading ? 0.6 : 1 }}>
+                {loading ? "Отправка..." : "Записаться"}
+              </button>
+            </Reveal>
           </form>
         </div>
       </div>
