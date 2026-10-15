@@ -7,6 +7,7 @@ import { Certificates } from "@/components/sections/Certificates";
 import { Gallery } from "@/components/sections/Gallery";
 import { Reviews } from "@/components/sections/Reviews";
 import { BookingForm } from "@/components/sections/BookingForm";
+import { Documents } from "@/components/sections/Documents";
 import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <Gallery />
       <Reviews />
       <BookingForm />
+      <Documents />
       <Footer />
     </main>
   );
